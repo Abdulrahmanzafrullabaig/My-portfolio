@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abdul Rahman Zafrulla Baig - Portfolio</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    /* Previous CSS styles remain the same */
+    :root {
+      --primary-color: #1D919C;
+      --bg: #F9F9F9;
+      --text: #212121;
+      --animation-color: #E9E9E9;
+      --card-bg: #FFFFFF;
+      --card-animation-color:#1D919C;
+    }
+    body.dark-mode {
+      --primary-color: #E5E5E5;
+      --bg: #121212;
+      --text: #E0E0E0;
+      --animation-color: grey;
+      --card-bg: #1E1E1E;
+      --card-animation-color: #E5E5E5;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+    }
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      text-decoration: none;
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .logo span {
+      color: var(--primary-color);
+    }
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--primary-color);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: rotate(45deg);
+      transition: transform 0.5s ease;
+    }
+    .logo:hover .logo-icon {
+      transform: rotate(225deg);
+    }
+    .logo-text {
+      color: var(--primary-color);
+      transition: color 0.3s ease;
+    }
+    .logo:hover .logo-text {
+      transform: translateY(-2px);
+    }
+    .navbar {
+      padding: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      background-color: var(--bg);
+      z-index: 1000;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .nav-links a {
+      color: inherit;
+      text-decoration: none;
+      position: relative;
+      font-weight: 500;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: var(--primary-color);
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    .theme-toggle {
+      background: none;
+      border: 2px solid var(--primary-color);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      color: inherit;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+    .theme-toggle:hover {
+      background-color: var(--primary-color);
+      color: var(--bg);
+      transform: rotate(360deg);
+    }
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .floating-shapes {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .shape {
+      position: absolute;
+      background-color: var(--animation-color);
+      border-radius: 4px;
+      opacity: 0.5;
+      transition: transform 0.3s;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+    .location {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      opacity: 0.8;
+      margin-bottom: 2rem;
+    }
+    .bio {
+      max-width: 800px;
+      text-align: center;
+      margin-bottom: 4rem;
+      line-height: 1.6;
+    }
+    .about {
+      padding: 4rem 2rem;
+      position: relative;
+    }
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .skill-category {
+      padding: 1.5rem;
+      border-radius: 8px;
+      background-color: var(--card-bg);
+      transition: transform 0.3s;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .skill-category:hover {
+      transform: translateY(-5px);
+    }
+    .skill-category h3 {
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+    }
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .skill-tag {
+      background-color: var(--animation-color);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+    }
+    img{
+      width: 600px;
+      height:300px;
+      justify-items: center;
+      align-items: center;
+    }
+    .projects {
+      padding: 4rem 2rem;
+    }
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .project-card {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      background-color: var(--card-bg);
+      transition: transform 0.5s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .project-card:hover {
+      transform: translateY(-10px);
+    }
+    .project-info {
+      padding: 1.5rem;
+    }
+    .project-info h3 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+    .contact-card {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      justify-content: space-between;
+      background-color: var(--card-bg);
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 800px;
+      margin: 2rem auto;
+    }
+    .contact-info {
+      flex: 1;
+      padding-left: 70px;
+    }
+    .contact-image {
+      flex: 0 0 200px;
+      margin-left: 2rem;
+    }
+    .contact-image img {
+      width: 300px;
+      height: auto;
+      border-radius: 8px;
+    }
+    .footer {
+      padding: 2rem;
+      text-align: center;
+      background-color: var(--card-bg);
+    }
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      .nav-links {
+        display: none;
+      }
+      .contact-card {
+        flex-direction: column;
+      }
+      .contact-image {
+        margin: 1rem 0 0 0;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="#" class="logo">
+      <div class="logo-icon">
+        <span>B</span>
+      </div>
+      <div class="logo-text">BAIG</div>
+    </a>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="theme-toggle">🌙</button>
+  </nav>
+
+  <main class="main-content">
+    <section id="home" class="hero">
+      <div class="floating-shapes"></div>
+      <div class="hero-content">
+        <h1>hi, i'm abdul rahman</h1>
+        <div class="location">
+          <span>📍</span>
+          <span>Mysore, india</span>
+        </div>
+        <p class="bio">
+          A third-year CSE student passionate about AI/ML, currently working on innovative projects in computer vision and natural language processing.
+        </p>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <h2>Skills & Expertise</h2>
+      <div class="skills">
+        <div class="skill-category">
+          <h3>Frontend Development</h3>
+          <div class="skill-list">
+            <span class="skill-tag">HTML</span>
+            <span class="skill-tag">CSS</span>
+            <span class="skill-tag">JavaScript</span>
+           </div>
+        </div>
+        <div class="skill-category">
+          <h3>Backend & Databases</h3>
+          <div class="skill-list">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">MongoDB</span>
+            <span class="skill-tag">SQL</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3>Tools & Frameworks</h3>
+          <div class="skill-list">
+            <span class="skill-tag">Figma</span>
+            <span class="skill-tag">Framer</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3>Languages</h3>
+          <div class="skill-list">
+            <span class="skill-tag">English</span>
+            <span class="skill-tag">Hindi</span>
+            <span class="skill-tag">Urdu</span>
+            <span class="skill-tag">Kannada</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="projects">
+      <h2>Featured Projects</h2>
+      <div class="project-grid">
+        <div class="project-card">
+          <img src="C:\Users\abdul\Pictures\blog-image-processing.jpg" alt="Image Processing" />
+          <div class="project-info">
+            <h3>Basic Image Processing</h3>
+            <p>Implemented fundamental image processing algorithms and filters for image enhancement and analysis.</p>
+            <a href="https://github.com/Abdulrahmanzafrullabaig" class="read-more">Read More →</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <img src="C:\Users\abdul\Pictures\screenshot-1739703794925.png" alt="Signature Verification" />
+          <div class="project-info">
+            <h3>Signature Verification</h3>
+            <p>AI-powered system for verifying handwritten signatures using deep learning.</p>
+            <a href="https://github.com/Abdulrahmanzafrullabaig" class="read-more">Read More →</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <img src="C:\Users\abdul\Pictures\screenshot-1740383804221.png" alt="Chatbot" />
+          <div class="project-info">
+            <h3>Offline Chatbot with Ollama</h3>
+            <p>
+              Built an offline chatbot using Ollama, powered by Deepseek and Qwen models. 
+              The chatbot provides conversational AI capabilities while ensuring all data remains local. 
+              Developed a user-friendly web interface using Python and Flask for seamless interaction.
+            </p>
+            <a href="https://github.com/Abdulrahmanzafrullabaig/chatbot-ollama" class="read-more">Read More →</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <img src="C:\Users\abdul\Pictures\screenshot-1739703815234.png" alt="OCR" />
+          <div class="project-info">
+            <h3>Optical Character Recognition (OCR)</h3>
+            <p>
+              Implemented an Optical Character Recognition (OCR) system to extract text from images and scanned documents. 
+              Utilized libraries like Tesseract and OpenCV for preprocessing and text extraction. 
+              Enhanced accuracy by applying image processing techniques such as noise reduction and thresholding.
+            </p>
+            <a href="https://github.com/Abdulrahmanzafrullabaig/ocr-project" class="read-more">Read More →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="contact-card">
+        <div class="contact-info">
+          <h2>Get in Touch</h2>
+          <p>Email: arzb26112004@gmail.com</p>
+          <p>
+            GitHub: <a href="https://github.com/Abdulrahmanzafrullabaig" target="_blank">
+              @Abdulrahmanzafrullabaig
+            </a>
+          </p>
+        </div>
+        <div class="contact-image">
+          <img src="C:\Users\abdul\Pictures\20250216_165110.jpg" alt="Contact" class="contact-img"/>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 Abdul Rahman Zafrulla Baig</p>
+  </footer>
+
+  <script>
+     // Theme Toggle
+     const themeToggle = document.querySelector('.theme-toggle');
+    const body = document.body;
+    themeToggle.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      themeToggle.textContent = body.classList.contains('dark-mode') ? '☀️' : '🌙';
+    });
+
+    // Intersection Observer for fade-up animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { 
+      threshold: 0.1,
+      rootMargin: '20px'
+    });
+
+    // Observe all skill categories, project cards, and contact card
+    document.querySelectorAll('.skill-category, .project-card, .contact-card').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Enhanced 3D mouse movement effect on hero section
+    const hero = document.querySelector('.hero');
+    hero.addEventListener('mousemove', (e) => {
+      const { clientX, clientY } = e;
+      const { left, top, width, height } = hero.getBoundingClientRect();
+      const x = (clientX - left) / width - 0.5;
+      const y = (clientY - top) / height - 0.5;
+      hero.style.transform = `
+        perspective(1000px)
+        rotateX(${y * 10}deg)
+        rotateY(${x * 10}deg)
+        scale(1.05)
+      `;
+    });
+    hero.addEventListener('mouseleave', () => {
+      hero.style.transform = 'none';
+    });
+    // Floating Shapes Animation
+    const floatingShapes = document.querySelector('.floating-shapes');
+    const numShapes = 20;
+    for (let i = 0; i < numShapes; i++) {
+      const shape = document.createElement('div');
+      shape.className = 'shape';
+      shape.style.width = Math.random() * 50 + 10 + 'px';
+      shape.style.height = shape.style.width;
+      shape.style.left = Math.random() * 100 + '%';
+      shape.style.top = Math.random() * 100 + '%';
+      floatingShapes.appendChild(shape);
+    }
+    // Mouse movement animation for floating shapes
+    document.addEventListener('mousemove', (e) => {
+      const shapes = document.querySelectorAll('.shape');
+      const mouseX = e.clientX / window.innerWidth;
+      const mouseY = e.clientY / window.innerHeight;
+      shapes.forEach((shape) => {
+        const shapeX = parseFloat(shape.style.left) / 100;
+        const shapeY = parseFloat(shape.style.top) / 100;
+        const deltaX = (mouseX - shapeX) * 70;
+        const deltaY = (mouseY - shapeY) * 70;
+        shape.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+      });
+    });
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+</body>
+</html>
